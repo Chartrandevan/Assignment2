@@ -72,6 +72,8 @@ public class skaterclient/*CHANGE THIS TO THE NAME OF THE FILE*/
             }//end if
             System.out.print(skatearray[skcount].getaverage() % 60 + " ");
             
+            System.out.println(" , Average speed = " + (int) (5 / ((double)skatearray[skcount].getaverage() / 3600)) + "km/hr");
+            
         System.out.println();
 
         skcount ++;
