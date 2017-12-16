@@ -29,71 +29,69 @@ public class skaterclient/*CHANGE THIS TO THE NAME OF THE FILE*/
 	// ***** declaration of variables *****
 	
           int count = 0;
-          int complist[] = new int[10];
+          int complist[] = null;
           int skcount = 0;
           skater[] skatearray = new skater[10];
           
           String delim = " ";
           String strin;  
            BufferedReader fin = new BufferedReader(new FileReader("skaterData.txt"));
+           
+           	System.out.println("**********************************");
+		System.out.println("NAME:        Your Name Here");
+		System.out.println("Class:       CS30S");
+		System.out.println("Assignment:  Ax Qy");
+		System.out.println("**********************************");
           
 	// ***** create objects *****
-         strin = fin.readLine();
+    
          String tokens[] = null;
         
         strin = fin.readLine();
         while (strin != null){
         tokens = strin.split(delim);
-        skatearray[count] = new skater(skcount, tokens);
-        skcount ++; 
+        skatearray[skcount] = new skater(skcount, tokens);
+         
+       
         
-         complist = skatearray[count].getcomptime();
-        for(int smallcount = 0; smallcount < 10; smallcount++){
-        System.out.print(complist[smallcount]/60 + ":" + complist[smallcount] % 60 + " ");    
+         complist = skatearray[skcount].getcomptime();
+         
+         //while output
+         
+      System.out.print("skater " + skatearray[skcount].getid() + "'s times: ");   
+        for(int smallcount = 0; smallcount < complist.length; smallcount++){
+        System.out.print(complist[smallcount]/60 + ":");
+              if(complist[smallcount]>= 420 && complist[smallcount] < 430) {
+                 System.out.print("0"); 
+            }//end if
+            System.out.print(complist[smallcount] % 60 + " ");
         }//end small for
-        System.out.println();
-        
-        
-        strin = fin.readLine();
-        }//end while
-        
-		
-	// ***** create input stream *****
-	
-		//ConsoleReader console = new ConsoleReader(System.in);
-		
-	// ***** Print Banner *****
-	
-		System.out.println("**********************************");
-		System.out.println("NAME:        Your Name Here");
-		System.out.println("Class:       CS30S");
-		System.out.println("Assignment:  Ax Qy");
-		System.out.println("**********************************");
-		
-	// ***** get input *****
-	
+        System.out.print(", average time = " + skatearray[skcount].getaverage()/60 + ":");
+              if(skatearray[skcount].getaverage() >= 420 && skatearray[skcount].getaverage() < 430) {
+                 System.out.print("0"); 
+            }//end if
+            System.out.print(skatearray[skcount].getaverage() % 60 + " ");
             
-
-                // all input is gathered in this section
-		// remember to put ConsoleReader.class into the
-		// same folder.
-	
-	// ***** processing *****
-	
-	
-        
-	// ***** output *****
-	
-
-        complist = skatearray[count].getcomptime();
-        for(int smallcount = 0; smallcount < 10; smallcount++){
-        System.out.print(complist[smallcount]/60 + ":" + complist[smallcount] % 60 + " ");    
-        }//end small for
         System.out.println();
+
+        skcount ++;
+        strin = fin.readLine();      
+        }//end while
+
+        
 
 	// ***** closing message *****
 	
 		System.out.println("end of processing");
 	
 	}  // end main	
+        
+
+    
+    
+        public static int getNumber(String banner, String promt) {
+        int n = 0;          // local varible to hold integer from keyboard buffer
+        n = Integer.parseInt(JOptionPane.showInputDialog(banner, promt));
+        return (n);
+    } // end getNumber
 }  // end class
