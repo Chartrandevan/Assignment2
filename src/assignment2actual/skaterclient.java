@@ -106,6 +106,19 @@ public class skaterclient/*CHANGE THIS TO THE NAME OF THE FILE*/
          promt = "which skater would you like to see the times of"+ "\nex 3"+"\nenter -1 to cancel";
          skaterreq = getNumber(banner, promt);
         }
+        
+         promt = "which skater would you like to see the speed of"+ "\nex 3"+"\nenter -1 to cancel";
+         skaterreq = getNumber(banner, promt);
+         while(skaterreq != -1){
+         promt = "Which race would you like to see the speed of"+"\nex 7"+"\nenter -1 to cancel or select antoher skater";
+         timereq = getNumber(banner, promt);
+         while (timereq != -1){
+         System.out.println("time = " + (int) (5 / ((double)skatearray[skaterreq -1].getaverage() / 3600)) + "km/hr");
+          timereq = getNumber(banner, promt);
+         }
+         promt = "which skater would you like to see the speeds of"+ "\nex 3"+"\nenter -1 to cancel";
+         skaterreq = getNumber(banner, promt);
+        }
 
 	// ***** closing message *****
 	
