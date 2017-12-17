@@ -1,15 +1,19 @@
+package assignment2actual;
+
 // **********************************************************************
-// Programmer:	Rob Sveinson
-// Class:		CS20S
+// Programmer:	Evan Chartrand
+// Class:		CS30S
 //
-// Assignment:	aX qy
+// Assignment:	Assignment 2
 //
-// Description:	a brief description of the program goes here
+// Description:	my program will create a array of skater objects and perform 
+//various functions with it
 //
 //
-//	Input:		describe any input from keyboard or file
+//	Input:		a series of times from a text file
 //
-//  Output:		describe the result of your program
+//  Output:		the times, the skaters id, the average speed 
+//and the average time
 // ***********************************************************************
 
 import assignment2actual.skater;
@@ -28,97 +32,92 @@ public class skaterclient/*CHANGE THIS TO THE NAME OF THE FILE*/
 	
 	// ***** declaration of variables *****
 	
-          int timereq = 0;
-          int skaterreq = 0;
-          int count = 0;
-          int complist[] = null;
-          int skcount = 0;
-          skater[] skatearray = new skater[10];
+      int timereq = 0;//the time or speed of the race the user would like to see
+          int skaterreq = 0;//the skater the user would like to see
+          int count = 0;//a counter
+          int complist[] = null;//the list of compressed times
+          int skcount = 0;//a counter of the number of skaters
+          skater[] skatearray = new skater[10];//an array of skater objects
           
-          String delim = " ";
-          String strin;  
-           BufferedReader fin = new BufferedReader(new FileReader("skaterData.txt"));
+          String delim = " ";//a deliminator
+          String strin;  //a string for getting input
+           BufferedReader fin = new BufferedReader(new FileReader("skaterData.txt"));//for reading data from a texxt file
            
-            String banner;               // output banner for windows
+            String banner;               // output banner
 
         // **** create banner ****
         banner = "*******************************************\n";
         banner += "Name:		Evan Chartrand\n";
         banner += "Class:		CS30S\n";
-        banner += "Assignment:	Ax Qy\n";
+        banner += "Assignment:	Assignment 2\n";
         banner += "*******************************************\n\n";
-           	System.out.println("**********************************");
-		System.out.println("NAME:        Your Name Here");
-		System.out.println("Class:       CS30S");
-		System.out.println("Assignment:  Ax Qy");
-		System.out.println("**********************************");
+        System.out.println(banner);
+
           
 	// ***** create objects *****
     
-         String tokens[] = null;
+         String tokens[] = null;//an array of strings
         
         strin = fin.readLine();
         while (strin != null){
         tokens = strin.split(delim);
-        skatearray[skcount] = new skater(skcount, tokens);
-         
-       
-        
-         complist = skatearray[skcount].getcomptime();
+        skatearray[skcount] = new skater(skcount, tokens);//creation of skater objects
+        complist = skatearray[skcount].getcomptime();//give the skater object in the skater array their list of data
          
          //while output
          
-      System.out.print("skater " + skatearray[skcount].getid() + "'s times: ");   
-        for(int smallcount = 0; smallcount < complist.length; smallcount++){
-        System.out.print(complist[smallcount]/60 + ":");
-              if(complist[smallcount]>= 420 && complist[smallcount] < 430) {
+      System.out.print("skater " + skatearray[skcount].getid() + "'s times: "); //prints the skaters id 
+        for(int smallcount = 0; smallcount < complist.length; smallcount++){ //prints each time
+        System.out.print(complist[smallcount]/60 + ":");//
+              if(complist[smallcount]>= 420 && complist[smallcount] < 430) { // helps format numbers like, 7:05
                  System.out.print("0"); 
             }//end if
             System.out.print(complist[smallcount] % 60 + " ");
         }//end small for
-        System.out.print(", average time = " + skatearray[skcount].getaverage()/60 + ":");
-              if(skatearray[skcount].getaverage() >= 420 && skatearray[skcount].getaverage() < 430) {
+        System.out.print(", average time = " + skatearray[skcount].getaverage()/60 + ":");//prints average time
+              if(skatearray[skcount].getaverage() >= 420 && skatearray[skcount].getaverage() < 430) {//helps format average time
                  System.out.print("0"); 
             }//end if
             System.out.print(skatearray[skcount].getaverage() % 60 + " ");
             
-            System.out.println(" , Average speed = " + (int) (5 / ((double)skatearray[skcount].getaverage() / 3600)) + "km/hr");
+            System.out.println(" , Average speed = " + (int) (5 / ((double)skatearray[skcount].getaverage() / 3600)) + "km/hr");//prints average speed
             
-        System.out.println();
+        System.out.println();//helps with formating
 
-        skcount ++;
-        strin = fin.readLine();      
+        skcount ++;//number of times through the loop
+        strin = fin.readLine(); //loop update statement     
         }//end while
         
-         String promt = "which skater would you like to see the times of"+ "\nex 3"+"\nenter -1 to cancel";
-         skaterreq = getNumber(banner, promt);
+         String promt = "which skater would you like to see the times of"+ "\nex 3"+"\nenter -1 to cancel";//updates prompt
+         skaterreq = getNumber(banner, promt);//finds the skater the user would like
         while(skaterreq != -1){
-         promt = "Which time would you like to view"+"\nex 7"+"\nenter -1 to cancel or select antoher skater";
-         timereq = getNumber(banner, promt);
+         promt = "Which time would you like to view"+"\nex 7"+"\nenter -1 to cancel or select antoher skater";//finds the time they would like to see
+         timereq = getNumber(banner, promt);//loop control statement
          while (timereq != -1){
-         System.out.print("time = " + skatearray[skaterreq-1].getcomptime()[timereq-1]/60 + ":");
-              if(skatearray[skaterreq-1].getcomptime()[timereq-1] >= 420 && skatearray[skaterreq-1].getcomptime()[timereq-1] < 430) {
+         System.out.print("time = " + skatearray[skaterreq-1].getcomptime()[timereq-1]/60 + ":");//prints the time
+              if(skatearray[skaterreq-1].getcomptime()[timereq-1] >= 420 && skatearray[skaterreq-1].getcomptime()[timereq-1] < 430) {//helps with formating
                  System.out.print("0"); 
             }//end if
             System.out.print(skatearray[skaterreq-1].getcomptime()[timereq-1] % 60 + " ");
-          timereq = getNumber(banner, promt);
-         }
+            
+          timereq = getNumber(banner, promt);//loop update statement
+         }//end while time req
          promt = "which skater would you like to see the times of"+ "\nex 3"+"\nenter -1 to cancel";
          skaterreq = getNumber(banner, promt);
-        }
+        }//end while skaterreq
         
          promt = "which skater would you like to see the speed of"+ "\nex 3"+"\nenter -1 to cancel";
-         skaterreq = getNumber(banner, promt);
+         skaterreq = getNumber(banner, promt);//loop control statement 
          while(skaterreq != -1){
          promt = "Which race would you like to see the speed of"+"\nex 7"+"\nenter -1 to cancel or select antoher skater";
-         timereq = getNumber(banner, promt);
+         timereq = getNumber(banner, promt);//loop control statement
          while (timereq != -1){
-         System.out.println("time = " + (int) (5 / ((double)skatearray[skaterreq -1].getaverage() / 3600)) + "km/hr");
+         System.out.println("time = " + (int) (5 / ((double)skatearray[skaterreq -1].getaverage() / 3600)) + "km/hr");//prints the speed of a requested race
           timereq = getNumber(banner, promt);
-         }
+         }//end while timereq
          promt = "which skater would you like to see the speeds of"+ "\nex 3"+"\nenter -1 to cancel";
          skaterreq = getNumber(banner, promt);
-        }
+        }//end while skaterreq
 
 	// ***** closing message *****
 	

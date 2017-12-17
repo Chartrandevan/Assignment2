@@ -3,12 +3,12 @@ package assignment2actual;
 import java.io.IOException;
 
 /* **********************************************************
- * Programmer:	Rob Sveinson
- * Class:		CS20S
+ * Programmer:	Evan Chartrand
+ * Class:		CS30S
  * 
- * Assignment:	aX  qY
+ * Assignment:	Assignment 2
  *
- * Description:	describe the class you are creating
+ * Description:	a skater with a list of compressed times
  *
  * 
  * *************************************************************
@@ -25,21 +25,21 @@ import java.io.IOException;
  	
  	// ********** instance variable **********
     
-    private int length;
-    private int [] comptime;
-    private int id = 0 ;
+    private int length;//the length of the time
+    private int [] comptime;//the array of times
+    private int id = 0 ; //the unique id
     
         // ********** constructors ***********
  	
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        //purpose: create a new circle with default properties
+        //purpose: create a new skater with a list of times
         //interface
-        //in: none
+        //in: id and array of data
         //out: none
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         public skater(int i, String[] tokens) throws IOException{
-        comptime = time.getTime(i,tokens);
-        length = tokens.length;
+        comptime = time.getTime(i,tokens);//gives a valuue to the list of times
+        length = tokens.length;//declares variable length
                id = i + 1;
         }//end skater
         
@@ -49,46 +49,23 @@ import java.io.IOException;
  	
         public int[] getcomptime(){
         return comptime;    
-        }
+        }//returns list of times
         
         public int getid(){
         return id;
-        }
+        }//returns id
         
         public int getaverage(){
           int sum = 0;
           int avcount = 0;
         for (int count = 0; count < length; count++) {
-            sum = sum + comptime[count];
+            sum = sum + comptime[count];//adds the numbers together
             avcount++;
         } //end for 
-        sum = sum/avcount;
+        sum = sum/avcount;//divides sum by the number of numbers
         return sum;
-        }
+        }//returns average
            
  	// ********** mutators **********
- 
-                    //************************************************
-    // Purpose: to average an array
-    // Interface: IN: the array and length of it
-    // Returns: the average of an array
-    // *****************************************************
-    public static int averagearray(int[] arreh, int max) {
-        int average = addarray(arreh, max) / max;
-        return average;
-    }//end average
-    //************************************************
-    // Purpose: to add an array
-    // Interface: IN: the array and length of it
-    // Returns: the sum of an array
-    // *****************************************************
-    public static int addarray(int[] arreh, int max) {
-        int sum = 0;
-        for (int count = 0; count < max; count++) {
-            sum = sum + arreh[count];
-        } //end for 
-        return sum;
-    }//end printarray
-    
     
  }  // end class
